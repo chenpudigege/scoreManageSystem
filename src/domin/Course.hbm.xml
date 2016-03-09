@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-2-18 13:11:28 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+ <class catalog="score_manager" name="domin.Course" table="course">
+  <id name="courseId" type="int">
+   <column name="courseId"/>
+   <generator class="increment"/>
+  </id>
+  <property generated="never" lazy="false" name="courseName" type="string">
+   <column name="courseName" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="credit" type="int">
+   <column name="credit" not-null="true"/>
+  </property>
+  <property generated="never" lazy="false" name="classHour" type="int">
+   <column name="classHour" not-null="true"/>
+  </property>
+  <set fetch="select" inverse="true" lazy="true" name="teachers"
+   sort="unsorted" table="teachercourse">
+   <key>
+    <column name="courseId" not-null="true"/>
+   </key>
+   <many-to-many entity-name="domin.Teacher" unique="false">
+    <column name="teacherId" not-null="true"/>
+   </many-to-many>
+  </set>
+  <set cascade="save-update" fetch="subselect" lazy="true" inverse="true"
+   name="studentcourses" sort="unsorted" table="studentcourse">
+   <key>
+    <column name="courseId" not-null="true"/>
+   </key>
+   <one-to-many class="domin.Studentcourse"/>
+  </set>
+ </class>
+</hibernate-mapping>

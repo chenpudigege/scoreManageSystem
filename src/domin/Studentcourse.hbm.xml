@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-2-18 13:11:28 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+	<class catalog="score_manager" name="domin.Studentcourse" table="studentcourse">
+		<composite-id>
+			<key-many-to-one name="Course" class="domin.Course">
+				<column name="courseId" />
+			</key-many-to-one>
+
+			<key-many-to-one name="Student" class="domin.Student">
+				<column name="studentId" />
+			</key-many-to-one>
+		</composite-id>
+		<property generated="never" lazy="false" name="score"
+			type="java.lang.Integer">
+			<column name="score" />
+		</property>
+	</class>
+</hibernate-mapping>

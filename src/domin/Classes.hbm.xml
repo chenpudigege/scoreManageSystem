@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-2-18 13:11:28 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="domin.Classes" table="classes" catalog="score_manager" optimistic-lock="version">
+        <id name="classId" type="int">
+            <column name="classId" />
+            <generator class="increment" />
+        </id>
+        <property name="academy" type="string">
+            <column name="academy" not-null="true" />
+        </property>
+        <property name="major" type="string">
+            <column name="major" not-null="true" />
+        </property>
+        <set name="students" table="student" lazy="true" fetch="select">
+            <key>
+                <column name="classid" not-null="true" />
+            </key>
+            <one-to-many class="domin.Student" />
+        </set>
+    </class>
+</hibernate-mapping>

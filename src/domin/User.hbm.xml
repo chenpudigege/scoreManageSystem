@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="domin.User" table="user" catalog="score_manager"
+		optimistic-lock="version">
+		<id name="username" type="string">
+			<column name="username" not-null="true"/>
+			<generator class="assigned" />
+		</id>
+
+		<property name="password" type="string">
+			<column name="password" not-null="true" />
+		</property>
+		
+		<property name="role" type="string">
+			<column name="role" not-null="true" />
+		</property>
+		
+	</class>
+</hibernate-mapping>

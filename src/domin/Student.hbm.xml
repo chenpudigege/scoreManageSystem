@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-2-18 13:11:28 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+	<class catalog="score_manager" name="domin.Student" table="student">
+		<id name="studentId" type="int">
+			<column name="studentId" />
+			<generator class="increment" />
+		</id>
+		<many-to-one cascade="save-update" class="domin.Classes"
+			fetch="select" name="classes">
+			<column name="classid" not-null="true" />
+		</many-to-one>
+		<property generated="never" lazy="false" name="name" type="string">
+			<column name="name" not-null="true" />
+		</property>
+		<property generated="never" lazy="false" name="sex" type="string">
+			<column name="sex" not-null="true" />
+		</property>
+		<property generated="never" lazy="false" name="age" type="int">
+			<column name="age" not-null="true" />
+		</property>
+		<many-to-one cascade="save-update" column="username"
+			unique="true" class="domin.User" fetch="select" name="user">
+		</many-to-one>
+		<set cascade="save-update" fetch="subselect" lazy="true" inverse="true"
+			name="studentcourses" sort="unsorted" table="studentcourse">
+			<key>
+				<column name="studentId" not-null="true" />
+			</key>
+			<one-to-many class="domin.Studentcourse" />
+		</set>
+	</class>
+</hibernate-mapping>

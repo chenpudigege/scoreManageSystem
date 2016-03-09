@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-2-18 13:11:28 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+	<class name="domin.Admin" table="admin" catalog="score_manager"
+		optimistic-lock="version">
+		<id name="adminId" type="int">
+			<column name="adminId" />
+			<generator class="increment" />
+		</id>
+		<many-to-one cascade="save-update" column="username"
+			unique="true" class="domin.User" fetch="select" name="user">
+		</many-to-one>
+		<property name="name" type="string">
+			<column name="name" not-null="true" />
+		</property>
+	</class>
+</hibernate-mapping>

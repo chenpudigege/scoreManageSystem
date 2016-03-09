@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-2-18 13:11:28 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+	<class name="domin.Teacher" table="teacher" catalog="score_manager"
+		optimistic-lock="version">
+		<id name="teacherId" type="int">
+			<column name="teacherId" />
+			<generator class="increment" />
+		</id>
+		<property name="name" type="string">
+			<column name="name" not-null="true" />
+		</property>
+		<property name="sex" type="string">
+			<column name="sex" not-null="true" />
+		</property>
+		<property name="age" type="int">
+			<column name="age" not-null="true" />
+		</property>
+		<property name="position" type="string">
+			<column name="position" not-null="true" />
+		</property>
+		<many-to-one cascade="save-update" column="username"
+			unique="true" class="domin.User" fetch="select" name="user">
+		</many-to-one>
+		<set name="courses" table="teachercourse" inverse="false" lazy="true"
+			fetch="select">
+			<key>
+				<column name="teacherId" not-null="true" />
+			</key>
+			<many-to-many entity-name="domin.Course">
+				<column name="courseId" not-null="true" />
+			</many-to-many>
+		</set>
+	</class>
+</hibernate-mapping>
